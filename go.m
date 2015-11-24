@@ -114,7 +114,6 @@ int_pulses = squeeze(int_pulses);
 figure('Name', 'int_pulses');
 image(abs(int_pulses)*10e6);
 
-plot(120, 50,'Marker', '2','MarkerSize',fontsize,'Color',colors(7));
 
 figure('Name', '3D');
 % Visualize

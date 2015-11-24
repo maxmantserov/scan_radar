@@ -21,7 +21,7 @@ hag = phased.ArrayGain('SensorArray', harray,'PropagationSpeed', v);
 ag = step(hag, fc, [0; 0]);
 
 snr_min = albersheim(pd, pfa, int_pulsenum);
-peak_power = radareqpow(lambda, max_distance_range, snr_min, hwav.PulseWidth, ...
+peak_power = radareqpow(lambda, max_distance_range, snr_min, hwav.ChipWidth, ...
     'RCS', tgt_rcs, 'Gain', htx.Gain + ag);
 
 htx.PeakPower = peak_power;
@@ -90,8 +90,8 @@ for m = 1:pulsenum
     rx_pulses(:, m) = rsig;                       % Form data matrix
 end
 
-figure('Name', 'rx_pulses');
-image(abs(rx_pulses)*10e7);
+% figure('Name', 'rx_pulses');
+% image(abs(rx_pulses)*10e7);
 
 %% Matched Filter
 
@@ -114,6 +114,9 @@ int_pulses = squeeze(int_pulses);
 figure('Name', 'int_pulses');
 image(abs(int_pulses)*10e6);
 
+plot(120, 50,'Marker', '2','MarkerSize',fontsize,'Color',colors(7));
+
+figure('Name', '3D');
 % Visualize
 r = v*fast_time_grid/2;  %здесь вылезли 5000
 X = r'*cosd(scangrid); Y = r'*sind(scangrid);
